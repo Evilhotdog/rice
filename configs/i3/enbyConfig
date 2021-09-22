@@ -1,0 +1,1 @@
+exec feh --bg-scale .config/wallpapers/enby/`ls ~/.config/wallpapers/enby | shuf -n 1`

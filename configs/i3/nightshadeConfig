@@ -1,0 +1,1 @@
+exec feh --bg-scale .config/wallpapers/nightshade/`ls ~/.config/wallpapers/nightshade | shuf -n 1`

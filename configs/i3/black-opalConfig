@@ -1,0 +1,1 @@
+exec feh --bg-scale .config/wallpapers/black-opal/`ls ~/.config/wallpapers/black-opal | shuf -n 1`

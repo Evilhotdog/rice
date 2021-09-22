@@ -1,0 +1,9 @@
+cp ~/.config/awesome/* configs/awesome/
+cp ~/.config/i3/* configs/i3/
+cp ~/.config/wallpapers/black-opal/* wallpapers/black-opal/
+cp ~/.config/wallpapers/regal/* wallpapers/regal/
+cp ~/.config/wallpapers/enby/* wallpapers/enby/
+cp ~/.config/wallpapers/trans/* wallpapers/trans/
+cp ~/.config/wallpapers/nightshade/* wallpapers/nightshade/
+cp ~/.config/polybar/* configs/polybar/
+cp ~/.config/alacritty/* configs/alacritty/*
