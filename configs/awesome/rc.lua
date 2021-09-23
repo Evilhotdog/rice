@@ -47,7 +47,7 @@ do
 end
 -- }}}
 
-themes = {"black-opal", "regal", "trans", "enby", "nightshade"}
+themes = {"black-opal", "regal", "trans", "enby", "nightshade", "solarpunk"}
 math.randomseed(os.time())
 currentTheme = math.random(1, #themes)
 
@@ -433,6 +433,8 @@ clientkeys = gears.table.join(
         {description = "(un)maximize horizontally", group = "client"})
 )
 
+
+
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
@@ -578,7 +580,14 @@ client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
-    c.shape = gears.shape.rounded_rect
+    if c.class == "Polybar" then
+	if string.find(c.name, "top") then
+      		c.shape = function (cr, width, height, radius) gears.shape.partially_rounded_rect(cr, width, height, false, false, true, true) end
+	elseif string.find(c.name, "bottom") then
+		c.shape = function (cr, width, height, radius) gears.shape.partially_rounded_rect(cr, width, height, true, true, false, false) end
+	end
+    else c.shape = gears.shape.rounded_rect
+    end
     if awesome.startup
       and not c.size_hints.user_position
       and not c.size_hints.program_position then
@@ -615,7 +624,7 @@ client.connect_signal("request::titlebars", function(c)
 
     awful.titlebar(c) : setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
+            --awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
@@ -628,11 +637,11 @@ client.connect_signal("request::titlebars", function(c)
             layout  = wibox.layout.flex.horizontal
         },
         { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
+        --    awful.titlebar.widget.floatingbutton (c),
+        --    awful.titlebar.widget.maximizedbutton(c),
+        --    awful.titlebar.widget.stickybutton   (c),
+        --    awful.titlebar.widget.ontopbutton    (c),
+        --    awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
         },
         layout = wibox.layout.align.horizontal

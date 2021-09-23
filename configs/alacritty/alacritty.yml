@@ -67,7 +67,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.85
+  opacity: 1
 
   # Startup Mode (changes require restart)
   #
@@ -420,11 +420,11 @@ color_schemes:
       # Normal colors
       normal:
         black:   '#1d1f21'
-        red:     '#8C0E0F'
+        red:     '#BC1E1F'
         green:   '#DBA858'
         yellow:  '#E89C31'
         blue:    '#0047AB'
-        magenta: '#32174D'
+        magenta: '#62477D'
         cyan:    '#994444'
         white:   '#c5c8c6'
 
@@ -896,11 +896,154 @@ color_schemes:
     # regardless of their background color.
     #transparent_background_colors: false
 
+  solarpunk: &solarpunk
+    primary: 
+      background: '#1d1f21'
+      # Default colors
+    #  z1foreground: '#c5c8c6'
+
+      # Bright and dim foreground colors
+      #
+      # The dimmed foreground color is calculated automatically if it is not
+      # present. If the bright foreground color is not set, or
+      # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
+      # color will be used.
+      #dim_foreground: '#828482'
+      #bright_foreground: '#eaeaea'
+
+    # Cursor colors
+    #
+    # Colors which should be used to draw the terminal cursor.
+    #
+    # Allowed values are CellForeground/CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
+    #cursor:
+    #  text: CellBackground
+    #  cursor: CellForeground
+
+    # Vi mode cursor colors
+    #
+    # Colors for the cursor when the vi mode is active.
+    #
+    # Allowed values are CellForeground/CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
+    #vi_mode_cursor:
+    #  text: CellBackground
+    #  cursor: CellForeground
+
+    # Search colors
+    #
+    # Colors used for the search bar and match highlighting.
+    #search:
+      # Allowed values are CellForeground/CellBackground, which reference the
+      # affected cell, or hexadecimal colors like #ff00ff.
+      #matches:
+      #  foreground: '#000000'
+      #  background: '#ffffff'
+      #focused_match:
+      #  foreground: '#ffffff'
+      #  background: '#000000'
+
+      #bar:
+      #  background: '#c5c8c6'
+      #  foreground: '#1d1f21'
+
+    # Keyboard regex hints
+    #hints:
+      # First character in the hint label
+      #
+      # Allowed values are CellForeground/CellBackground, which reference the
+      # affected cell, or hexadecimal colors like #ff00ff.
+      #start:
+      #  foreground: '#1d1f21'
+      #  background: '#e9ff5e'
+
+      # All characters after the first one in the hint label
+      #
+      # Allowed values are CellForeground/CellBackground, which reference the
+      # affected cell, or hexadecimal colors like #ff00ff.
+      #end:
+      #  foreground: '#e9ff5e'
+      #  background: '#1d1f21'
+
+    # Line indicator
+    #
+    # Color used for the indicator displaying the position in history during
+    # search and vi mode.
+    #
+    # By default, these will use the opposing primary color.
+    #line_indicator:
+    #  foreground: None
+    #  background: None
+
+    # Selection colors
+    #
+    # Colors which should be used to draw the selection area.
+    #
+    # Allowed values are CellForeground/CellBackground, which reference the
+    # affected cell, or hexadecimal colors like #ff00ff.
+    #selection:
+    #  text: CellBackground
+    #  background: CellForeground
+
+    # Normal colors
+    normal:
+      black:   '#1d1f21'
+      red:     '#355E3B'
+      green:   '#C19A6B'
+      yellow:  '#C08081'
+      blue:    '#89CFF0'
+      magenta: '#98FB98'
+      cyan:    '#71BC78'
+      white:   '#FFFFFF'
+
+    # Bright colors
+    bright:
+      black:   '#666666'
+      red:     '#355E3B'
+      green:   '#C19A6B'
+      yellow:  '#C08081'
+      blue:    '#89CFF0'
+      magenta: '#98FB98'
+      cyan:    '#71BC78'
+      white:   '#FFFFFF'
+
+    # Dim colors
+    #
+    # If the dim colors are not set, they will be calculated automatically based
+    # on the `normal` colors.
+    #dim:
+    #  black:   '#131415'
+    #  red:     '#864343'
+    #  green:   '#777c44'
+    #  yellow:  '#9e824c'
+    #  blue:    '#556a7d'
+    #  magenta: '#75617b'
+    #  cyan:    '#5b7d78'
+    #  white:   '#828482'
+
+    # Indexed Colors
+    #
+    # The indexed colors include all colors from 16 to 256.
+    # When these are not set, they're filled with sensible defaults.
+    #
+    # Example:
+    #   `- { index: 16, color: '#ff00ff' }`
+    #
+    #indexed_colors: []
+
+    # Transparent cell backgrounds
+    #
+    # Whether or not `window.opacity` applies to all cell backgrounds or only to
+    # the default background. When set to `true` all cells will be transparent
+    # regardless of their background color.
+    #transparent_background_colors: false
 
 
 
 
-colors: *trans
+
+colors: *solarpunk
 
 # Bell
 #
