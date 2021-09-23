@@ -8,7 +8,7 @@
 
 Get the utilities at:
 + https://github.com/rajasegar/alacritty-themes
-+ https://github.com/thomas10-10/foo-Wallpaper-Feh-Gif
++ https://github.com/thomas10-10/foo-Wallpaper-Feh-Gif (And add the sh file to PATH)
 
 
 ## Install
