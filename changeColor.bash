@@ -1,4 +1,4 @@
-themes=("black-opal" "regal" "nightshade" "trans" "enby, solarpunk")
+themes=("black-opal" "regal" "nightshade" "trans" "enby" "solarpunk")
 if [ -z "$1" ] || [ "$1" = "-" ];
 	then theme="${themes[RANDOM%${#themes[@]}]}";
 	else theme=$1;

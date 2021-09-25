@@ -6,6 +6,10 @@
 + **Status bar**: Polybar
 + **Utilities used**: "foo-Wallpaper-Feh-Gif", "alacritty-theme"
 
+Get the utilities at:
++ https://github.com/rajasegar/alacritty-themes
++ https://github.com/thomas10-10/foo-Wallpaper-Feh-Gif (And add the sh file to PATH)
+
 
 ## Install
 
