@@ -9,8 +9,9 @@ alacritty-theme change "${theme//-}"
 
 image="$HOME/.config/wallpapers/$theme/$(ls ~/.config/wallpapers/$theme | shuf -n 1)";
 echo $image
+killall gifview
 if [ "${image##*.}" = "gif" ];
-	then back4 0.010 $image &
+	then gifview --animate --window root $image
 	else feh --bg-scale $image
 fi
 
