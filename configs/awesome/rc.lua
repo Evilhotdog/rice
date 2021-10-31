@@ -48,8 +48,26 @@ end
 -- }}}
 
 themes = {"black-opal", "regal", "trans", "enby", "nightshade", "solarpunk"}
+themeSwitch = {["black-opal"] = "cc6666", ["regal"] = "bc1e1f", ["trans"] = "c479a2", ["enby"] = "ffba00", ["nightshade"] = "9c4e97", ["solarpunk"] = "355e3b"}
 math.randomseed(os.time())
 currentTheme = math.random(1, #themes)
+local function writeTags()
+    file = io.open("/home/phoebe/.tags", "w")
+    for k, v in pairs(root.tags()) do
+	if v.selected then
+		file:write("%{F#000}%{B#" .. themeSwitch[themes[currentTheme]] .. "}")
+	else
+		file:write("%{F#" .. themeSwitch[themes[currentTheme]] .. "}%{B#1d1f21}")
+	end
+	file:write(" ")
+	file:write(v.name)
+	file:write(" ")
+    end
+    file:close(file)
+    awful.spawn.with_shell("polybar-msg hook awesomeTags 1")
+end
+
+
 
 local function themeShift(x) 
 	if x == 1 then
@@ -70,17 +88,6 @@ end
 local function wp_change() 
 	awful.spawn.with_shell("changeColor " .. themes[currentTheme] .. " awesomemsg &> $HOME/.file")
 end
-
-local function writeTags()
-    file = io.open("/home/phoebe/.tags", "w")
-    for k, v in pairs(awful.screen.focused().selected_tags) do
-        file:write(v.name)
-        file:write(" ")
-    end
-    file:close(file)
-    awful.spawn.with_shell("polybar-msg hook awesomeTags 1")
-end
-
 -- awful.spawn.with_shell("sh ~/.setRes")
 wp_change()
 
@@ -211,7 +218,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "Term", "Edit", "Web", "Chat", "5", "6", "7", "8", "Discard" }, s, awful.layout.layouts[8])
+    awful.tag({ "", "", "", "", "⓹", "⓺", "⓻", "⓼", "" }, s, awful.layout.layouts[8])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -259,13 +266,14 @@ awful.screen.connect_for_each_screen(function(s)
         },
     }]]
 end)
+writeTags()
 -- }}}
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, function () awful.tag.viewnext() writeTags() end),
-    awful.button({ }, 5, function () awful.tag.viewprev() writeTags() end)
+    --awful.button({ }, 3, function () mymainmenu:toggle() end),
+    --awful.button({ }, 4, function () awful.tag.viewnext() writeTags() end),
+    --awful.button({ }, 5, function () awful.tag.viewprev() writeTags() end)
 ))
 -- }}}
 
@@ -279,7 +287,7 @@ globalkeys = gears.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
-    awful.key({ modkey }, "0",
+    awful.key({ modkey }, "grave",
               function ()
                   local screen = awful.screen.focused()
                   for k, v in pairs(screen.tags) do
@@ -290,13 +298,20 @@ globalkeys = gears.table.join(
                   writeTags()
                 end,
               {description = "view all tags", group = "tag"}),
-    awful.key({ modkey, "Shift"   }, "Left", function () themeShift(0); awful.spawn.with_shell("changeColor " .. themes[currentTheme] .. " awesomemsg") end,
+    awful.key({ modkey, 	  }, "0", 
+	      function () 
+		  local screen = awful.screen.focused()
+		  awful.tag.viewnone(screen)
+		  writeTags()
+	      end,
+	      {description = "view no tags", group = "tag"}),
+    awful.key({ modkey, "Shift"   }, "Left", function () themeShift(0); awful.spawn.with_shell("changeColor " .. themes[currentTheme] .. " awesomemsg"); writeTags() end,
 	      {description = "switch to previous theme", group = "theme"}),
-    awful.key({ modkey, "Shift"   }, "Down", function () math.randomseed(os.time()); currentTheme = math.random(1, #themes); awful.spawn.with_shell("changeColor " .. themes[currentTheme] .. " awesomemsg") end,
+    awful.key({ modkey, "Shift"   }, "Down", function () math.randomseed(os.time()); currentTheme = math.random(1, #themes); awful.spawn.with_shell("changeColor " .. themes[currentTheme] .. " awesomemsg"); writeTags() end,
 	      {description = "randomize theme", group = "theme"}),
-    awful.key({ modkey, "Shift"   }, "Right", function () themeShift(1); awful.spawn.with_shell("changeColor " .. themes[currentTheme] .. " awesomemsg") end,
+    awful.key({ modkey, "Shift"   }, "Right", function () themeShift(1); awful.spawn.with_shell("changeColor " .. themes[currentTheme] .. " awesomemsg"); writeTags() end,
 	      {description = "switch to next theme", group = "theme"}),
-    awful.key({ modkey, "Shift"   }, "Up", function () awful.spawn.with_shell("changeColor " ..themes[currentTheme] .. " awesomemsg") end,
+    awful.key({ modkey, "Shift"   }, "Up", function () awful.spawn.with_shell("changeColor " ..themes[currentTheme] .. " awesomemsg"); writeTags() end,
 	      {description = "switch wallpaper", group = "theme"}),
     awful.key({ modkey,           }, "j",
         function ()
